@@ -1,4 +1,57 @@
 # lalinuxbashscr
+
+##2. Variables, Control
+The typeset and declare commands for variables
+```
+typeset -i x 
+# x must be an integer
+```
+
+```
+declare -l    #uppercase values in the vairable are converted to lowercase
+declare -u    #lowercase values in the vairable are converted to uppercase
+declare -l    #readonly
+declare -a    #array
+declare -A   #asso array
+```
+
+Ex
+```
+#!/bin/bash
+function f1{
+  typeset x   #private x
+  x=7 
+  y=8
+}
+x=1
+y=2
+echo $x  #1
+echo $y  #2
+f1
+echo $x  #1
+echo $y  #8
+```
+
+Ex
+```
+#!/bin/bash
+declare -l lstring="Ab"
+declare -u ustring="Cd"
+decalre -r ro="k"
+declare -a arr1
+declare -A arr2
+
+echo $lstring
+echo $ustring
+arr1[1]="test"
+echo ${arr1[1]}
+arr2["ke"]="ke"
+echo ${arr2["ke"]}
+```
+
+
+
+
 ##4. Advanced Bash
 ###1 Using the coproc command
 A coprocess is a backgrond process where your shell gets file descriptors for the process's stdin and stdout  
@@ -125,8 +178,36 @@ haldleopts $@
 ###6 Solutions: Debugging scripts using trap, eval, getopt, and coproc
 a.sh
 ```
-#! /bin/bash
+#!/bin/bash
 c="ls -s|sort -n"
 $c      #error, cannot process pipe
 eval $c
+```
+b.sh
+```
+#! /bin/bash
+echo options are $@
+opts="a b \$1 \$2 "
+set -- "$opts"
+#eval set -- $opts
+echo options are: $@
+```
+
+
+d.sh proc test
+```
+while
+read line
+do
+  echo $line |sed 's/flag/banner/g'
+done
+```
+
+call
+```
+coproc mysed { ./d.sh; }
+echo ${mysed[1]}  //58
+echo ${mysed[0]}  //62
+cat txt >&58
+cat <&62
 ```

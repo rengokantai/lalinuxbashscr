@@ -37,3 +37,46 @@ show jobs
 ```
 jobs
 ```
+
+
+
+###2 Debugging scripts with -x and -u options
+
+reports usage of unused variable
+```
+set -u
+```
+tracing output
+```
+bash -x ke.sh
+```
+or in program, set
+```
+set -x  #echo output
+set +x #cancel echo output.
+```
+check syntax errors
+```
+bash -n ke.sh
+```
+
+
+###3 Signals and traps
+Bash has a command, trap, that you use for catching signals and handling signals.  
+A handy thing to use the trap for is to gracefully die when the user does Control + C, instead of leaving behind some temporary files, for example, you can clean those up, and then terminate.   
+ctrl c = INT signal  
+ctrl \  (backslash)= quit signal  
+
+Ex
+```
+#! /bin/bash
+trap 'int;exit' INT
+trap 'echo cannot quit' QUIT
+while
+true
+do
+  sleep 5
+done
+```
+diff between int and quit: quit only stop current script, for example, stop sleep. but cannot terminate shell
+

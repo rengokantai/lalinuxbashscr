@@ -49,6 +49,107 @@ arr2["ke"]="ke"
 echo ${arr2["ke"]}
 ```
 
+###2 Looping with for/while sequences and reading input
+02:55 While pipe
+```
+ls -l |while
+read a b c
+do
+echo $c
+done
+```
+06:34 - seqs
+```
+`seq 1 4`
+{A..Z}
+{1..5}
+```
+
+for loop in a file
+```\
+for d in $(<filename)
+```
+generate a file list
+```
+for f in $(find . -name *.c)
+```
+
+
+###3 Defining functions and using return and exit
+export function name
+```
+export -f funcname
+```
+###4 Using file descriptors, file redirection, pipes, and here documents
+command > stdout 2> stderr < stdin  
+
+03:03
+```
+cmd1 2>&1|cmd2
+```
+same as
+```
+cmd1 |& cmd2
+```
+
+here documents
+```
+sort<<END
+...
+END
+```
+Ex:
+```
+find /etc -name a >txt   #files
+find /etc -name a 2>txt   #error
+find /etc -name a &>txt   #both
+```
+
+
+file descriptor ex
+```
+#!/bin/bash
+exec 19<data_file
+lsof -p $$
+cat 0<&19
+exec 7>&1   #save stdout in 7
+exec 1>&-  # close stdout
+lsof -p $$
+cat
+exec 1>&7  #copy 7 to stdout
+cat
+```
+((tbc)
+
+
+###5 Control-flow case statements and if-then-else with the test command
+case is not regex, just file globing
+```
+case $ans in
+ yes|YES|y.x    #just y.x, not yax,ybx..
+```
+
+```
+test -d x  #test is directory
+test -f x  #test is regular file
+test -s x  #success if x exists and not empty
+```
+
+
+string compare and numeric cmppare
+ #string
+```
+[ $x==$y ]  #string
+```
+numeric
+```
+[ $x -eq $y ]
+(($x==$x))
+```
+
+###6 Using arithmetic operators
+
+
 
 
 

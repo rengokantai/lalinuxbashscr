@@ -150,6 +150,56 @@ numeric
 ###6 Using arithmetic operators
 
 
+###8 Solutions: Using local variables in functions, loops, and arithmetic
+strings command, print all printable strings from file/output
+```
+strings a.txt
+```
+
+
+##3. Using Filters and Parameter
+##2 Using sed and AWK for more powerful scripting
+```
+sed -f sedscript -n inputfile
+sed '1,5p'
+```
+
+```
+sed '/important/!s/print/throw'
+```
+
+Ex:sedfunc
+```
+sed -n "$1,$2p"
+```
+then
+```
+bash sedfunc 2 5 <inputfile
+```
+
+
+###3 Positional parameters and operators with braces
+04:30
+string operations  
+${var#pre} remove matching prefix  
+${var#post} remove matching sufffix
+
+06:15 update value
+```
+#!/bin/bash
+x=abc
+abc="new"
+echo $x
+echo $abc
+echo ${!x}  #will print new
+```
+
+
+
+
+
+
+
 
 
 

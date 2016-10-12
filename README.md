@@ -1,4 +1,35 @@
 # lalinuxbashscr
+##1. Intro to Bash Scripting
+###3 Time commands and set variables
+export value
+```
+export var 
+declare -x var
+```
+08:20 check all enables
+```
+enable
+```
+08:48
+```
+compgen -k
+```
+
+###4 Bash startup
+.bash_profile is read when Bash is invoked as a login shell.  
+.bashec is executed when a new shell is started.  
+
+
+###5 Sourcing and aliasing with bash
+The shell executed the script in the shell's own process instead of in a new process
+
+
+
+###8 Solutions: Scripts with exported variables, sourcing, and echo
+
+
+
+
 
 ##2. Variables, Control
 The typeset and declare commands for variables
@@ -235,6 +266,27 @@ echo ${p#/*bin/}   #ke.sh
 echo ${p%.sh}    # /usr/bin/ke
 ```
 
+
+
+
+###5 Solutions: Looping, special variable operators, sed, and AWK
+1. print 1 item per line 
+```
+#!/bin/bash
+while
+[[ $# -gt 0 ]]
+do
+  echo $1
+  shift
+done
+```
+3 print all files
+```
+for i in *.sh
+do
+  echo ${i%.c}
+done
+```
 
 
 

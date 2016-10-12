@@ -195,8 +195,45 @@ echo ${!x}  #will print new
 ```
 
 
+unset ex
+```
+#!/bin/bash
+unset x
+a=${x:-Dog}
+echo a is $a
+echo x is $x
 
+a=${x:=Dog}
+echo a is $a
+echo x is $x
 
+unset x
+${x:?}
+```
+result:
+```
+a is Dog
+x is
+a is Dog
+x is Dog
+error...
+```
+#s, offset, example
+```
+#!/bin/bash
+a="a word"
+sub=${a:2}  #word
+sub=${a:2:2} #wo
+length=${#a} #6
+```
+
+suffix and prefix
+```
+#!/bin/bash
+p="/usr/bin/ke.sh"
+echo ${p#/*bin/}   #ke.sh
+echo ${p%.sh}    # /usr/bin/ke
+```
 
 
 
